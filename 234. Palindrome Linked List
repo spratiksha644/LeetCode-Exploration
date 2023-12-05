@@ -1,13 +1,5 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
+//Solution for above problem
+
 class Solution {
     private ListNode getMid(ListNode head){
         ListNode slow=head;
@@ -50,3 +42,10 @@ class Solution {
         return true;
     }
 }
+
+/*This Java code defines a Solution class with a method isPalindrome to determine if a linked list is a palindrome.
+The code uses a two-step process. First, it finds the middle of the linked list using the getMid method, 
+and then it reverses the second half of the list using the reverse method.
+It then compares the values of the first half (head1) with the reversed second half (head2).
+If all values match, the linked list is considered a palindrome, and the method returns true; otherwise, it returns false.
+The algorithm has a time complexity of O(n) and a space complexity of O(1).*/
