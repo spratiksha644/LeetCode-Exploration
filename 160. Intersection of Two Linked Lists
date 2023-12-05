@@ -1,0 +1,42 @@
+//Solution for given problem
+
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int m=0,n=0;
+        for(ListNode temp1=headA;temp1!=null;temp1=temp1.next){
+            n++;
+        }
+        for(ListNode temp2=headB;temp2!=null;temp2=temp2.next){
+            m++;
+        }
+        ListNode ptr1=headA;
+        ListNode ptr2=headB;
+        while(ptr1!=null && ptr2!=null){
+            if(m==n){
+                if(ptr1.val==ptr2.val && ptr1==ptr2){
+                    return ptr1;
+                }
+                ptr1=ptr1.next;
+                ptr2=ptr2.next;
+            }
+            else if(n>m){
+                n--;
+                ptr1=ptr1.next;
+            } 
+            else{
+                m--;
+                ptr2=ptr2.next;
+            }
+        }
+        return null;
+    }
+}
+
+/*
+This Java code defines a Solution class with a method getIntersectionNode to find the intersection point of two linked lists (headA and headB).
+The code first determines the lengths of the two lists using m and n.
+It then iterates through the longer list until the remaining lengths are equal.
+After achieving equal lengths, it compares the nodes in both lists. 
+If an intersection is found (nodes have the same value and the same reference), it returns the intersection node.
+If there is no intersection, it returns null.
+The algorithm has a time complexity of O(m + n) and a space complexity of O(1), making it an efficient solution for finding the intersection of two linked lists.*/
