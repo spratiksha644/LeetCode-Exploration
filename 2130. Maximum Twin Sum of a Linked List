@@ -1,0 +1,51 @@
+//Solution for the given problem
+
+class Solution {
+    public ListNode getMid(ListNode head){
+        ListNode slow=head;
+        ListNode fast=head.next;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+
+    public ListNode reverse(ListNode head){
+        ListNode curr=head;
+        ListNode prev=null;
+        ListNode next=null;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+    public int pairSum(ListNode head) {
+        if (head == null || head.next == null) {
+            return 0;}
+        ListNode middle=getMid(head);
+        ListNode temp1=middle.next;
+        middle.next=reverse(temp1);
+        int max=0;
+        ListNode head1=head;
+        ListNode head2=middle.next;
+        while(head2!=null){
+            max=Math.max(max,head1.val+head2.val);
+            head1=head1.next;
+            head2=head2.next;
+        }
+        return max;
+    }
+    
+}
+
+/*
+This Java code defines a Solution class with three methods: getMid, reverse, and pairSum.
+It aims to find the maximum pair sum of twin nodes in a linked list.
+The getMid method locates the middle node using a slow and fast pointer approach.
+The reverse method inverts the linked list in-place.
+The pairSum method checks for special cases, finds the middle, reverses the second half, and iterates through both halves to calculate the maximum pair sum. 
+The code employs an efficient strategy, addressing each aspect of the problem with modularized functions for clarity and effectiveness.*/
