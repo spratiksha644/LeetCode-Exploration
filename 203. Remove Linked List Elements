@@ -1,13 +1,5 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
+//Solution of the given problem
+
 class Solution {
     public ListNode removeElements(ListNode head, int val) {
         if(head==null){
@@ -28,3 +20,17 @@ class Solution {
         return head;
     }
 }
+
+/*Explanation for this code
+This Java code defines a Solution class with a method removeElements to remove all occurrences of a specified value (val) from a singly-linked list (head). 
+The code begins by checking if the list is initially empty (head==null).
+If so, it returns the same empty list.
+It then handles the case where the list has only one element with the target value, setting the list to null in this case.
+
+Next, the code utilizes a while loop to traverse the list, skipping any nodes at the beginning with the target value.
+It then employs another loop with a pointer (ptr) to iterate through the rest of the list.
+Whenever the next node has the target value, it adjusts the pointers to skip that node effectively, removing it from the list.
+
+The final modified list is returned. 
+The algorithm has a time complexity of O(n) where n is the number of nodes in the list and a space complexity of O(1),
+providing an efficient solution for removing elements from a linked list.*/
