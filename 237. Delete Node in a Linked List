@@ -1,0 +1,13 @@
+//Solution for given problem
+
+class Solution {
+    public void deleteNode(ListNode node) {
+        node.val=node.next.val;
+        node.next=node.next.next;
+    }
+}
+
+/*
+The deleteNode method in the provided Java code is designed to delete a node from a singly linked list.
+It achieves this by updating the value of the current node to be the same as the next node's value and then updating the next pointer to skip the next node,
+effectively removing it from the list. This method works under the assumption that the input node is not the tail of the linked list.*/
