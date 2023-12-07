@@ -1,0 +1,39 @@
+//Solution of the given problem
+
+class Solution {
+    public ListNode reverse(ListNode head){
+        ListNode curr=head;
+        ListNode prev=null;
+        ListNode next=null;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+    public ListNode removeNodes(ListNode head) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        head=reverse(head);
+        ListNode temp=head;
+        ListNode ptr=head;
+        while(ptr!=null && ptr.next!=null){
+            if(temp.next.val<ptr.val){
+                temp.next=temp.next.next;
+            }
+            else{
+                temp=temp.next;
+                ptr=temp;
+            }
+        }
+        return reverse(head);
+    }
+}
+
+/*
+The removeNodes method in this Java code initially reverses the linked list, then iterates through the reversed list to remove nodes whose values are smaller than their successors.
+It achieves this by updating the next pointers. Finally, the reversed list is reversed again to restore its original order, and the modified linked list is returned.
+This process efficiently eliminates nodes with smaller values, producing a new linked list with unwanted nodes removed.*/
