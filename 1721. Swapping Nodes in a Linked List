@@ -1,0 +1,33 @@
+//Solution for the given problem
+
+class Solution {
+    public ListNode swapNodes(ListNode head, int k) {
+        if(head==null && head.next==null){
+            return head;
+        }
+        ListNode temp=head;
+        int n=0,m=0,val1,val2;
+        for(ListNode curr=head;curr.next!=null;curr=curr.next){
+            m++;
+        }
+        while(n<k-1){
+            temp=temp.next;
+            n++;
+        }
+        val1=temp.val;
+        n=0;
+        ListNode ptr=head;
+        while(n<=m-k){
+            ptr=ptr.next;
+            n++;
+        }
+        val2=ptr.val;
+        ptr.val=val1;
+        temp.val=val2;
+        return head;
+    }
+}
+
+/*The swapNodes method in the provided Java code swaps the values of two nodes in a linked list based on the given parameter k.
+It uses two pointers (temp and ptr) to identify the nodes to be swapped and exchanges their values.
+The method returns the modified linked list.*/
