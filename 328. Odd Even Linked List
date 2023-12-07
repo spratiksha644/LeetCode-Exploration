@@ -1,0 +1,30 @@
+//Solution of the given problem
+
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        int n=0;
+        ListNode ptr=head;
+        ListNode next=head.next;
+        ListNode curr=head.next;
+        while(next!=null && next.next!=null){
+            if(n%2==0){
+                ptr.next=ptr.next.next;
+                next.next=next.next.next;
+                n=n+2;
+            }
+            ptr=ptr.next;
+            next=next.next;
+        }
+        ptr.next=curr;
+        return head;
+    }
+}
+
+/*The oddEvenList method in this Java code transforms a linked list by separating nodes into two groups: odd-positioned nodes and even-positioned nodes.
+It initializes pointers (ptr, next, and curr) to traverse the list. The loop iterates through the list, identifying and repositioning even-positioned nodes.
+If the current position is even (n%2 == 0), it updates the pointers to skip the even-positioned node. This process continues until the end of the list. 
+Finally, it connects the modified list and returns the result.
+The method efficiently organizes the nodes based on their positions, creating a modified linked list with odd and even-positioned nodes separated.*/
