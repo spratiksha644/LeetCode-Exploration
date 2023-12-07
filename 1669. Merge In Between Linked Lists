@@ -1,0 +1,29 @@
+//Solution for the given code
+
+class Solution {
+    public ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
+        ListNode ptr=list1;
+        int n=0;
+        while(n<a-1){
+            ptr=ptr.next;
+            n++;
+        }
+        ListNode node=ptr.next;
+        ptr.next=list2;
+        while(ptr.next!=null){
+            ptr=ptr.next;
+        }
+        while(n<=b-1){
+            node=node.next;
+            n++;
+        }
+        ptr.next=node;
+        return list1;
+    }
+}
+
+/*
+The mergeInBetween method in the provided Java code merges two linked lists (list1 and list2) by inserting list2 into list1 between indices a and b.
+It achieves this by traversing to the insertion point, saving the node after the range, connecting the end of list2 to the node before the range, moving to the end of the modified list1,
+traversing to the node after the range, and finally connecting the remaining part of list1 to complete the merge.
+The modified list1 is then returned.*/
