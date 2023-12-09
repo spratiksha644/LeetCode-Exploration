@@ -1,0 +1,35 @@
+//Solution for the given problem
+
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummy=new ListNode();
+        ListNode res=dummy;
+        int carry=0;
+        while(l1!=null || l2!=null || carry!=0){
+            int val1=0;
+            if(l1!=null)
+                val1=l1.val;
+            int val2=0;
+            if(l2!=null)
+                val2=l2.val;
+            int sum = carry+val1+val2;
+            int digit=sum%10;
+            carry=sum/10;
+            res.next=new ListNode(digit);
+            res=res.next;
+            if(l1!=null)
+                l1=l1.next;
+            if(l2!=null)
+                l2=l2.next;
+        }
+        return dummy.next;
+    }
+}
+
+/*The Solution class in this Java code defines a method addTwoNumbers to add two non-negative integer linked lists (l1 and l2).
+It utilizes a dummy node to construct the result linked list. 
+The method iterates through the lists, adding corresponding digits along with any carry from the previous step.
+The sum and carry are calculated for each position, and a new node with the digit is appended to the result list.
+The iteration continues until both input lists are exhausted, and any remaining carry is considered.
+The final linked list represents the sum of the input integers. 
+This concise approach efficiently handles the addition of large numbers represented as linked lists, providing a clear and effective algorithm.*/
