@@ -1,0 +1,30 @@
+//solution for the given problem
+
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        ListNode curr=head;
+        ListNode prev=head;
+        while(prev!=null && prev.next!=null){
+            curr=curr.next;
+            prev=prev.next.next;
+            if(curr==prev){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+/*
+The provided Java code defines a Solution class with a hasCycle method to detect whether a linked list contains a cycle (i.e., if there is a loop in the list). 
+The method uses the Floyd's Tortoise and Hare algorithm, which employs two pointers moving at different speeds to traverse the list.
+If there is a cycle, the faster pointer (prev.next.next) will eventually catch up with the slower one (curr), indicating the presence of a loop.
+The method initializes two pointers (curr and prev) at the head of the linked list and iterates through the list. 
+In each iteration, curr moves one step, and prev moves two steps. If there is a cycle, the two pointers will meet at some point. 
+If there is no cycle, the loop will exit, and the method returns false.
+This algorithm is efficient and works in O(N) time complexity, where N is the number of nodes in the linked list.*/
+
+
+
+
+
