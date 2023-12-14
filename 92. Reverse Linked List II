@@ -1,0 +1,35 @@
+//Solution for the given problem
+
+class Solution {
+   
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        if(head==null || head.next==null ||left==right){
+            return head;
+        }
+        ListNode dummy=new ListNode();
+        dummy.next=head;
+        ListNode ptr=dummy;
+        ListNode temp=head;
+        for(int i=0;i<left-1;i++){
+            ptr=temp;
+            temp=temp.next;
+        }
+        ListNode prev=null,next=null,p1=temp;
+        for(int i=0;i<right-left+1;i++){
+            next=temp.next;
+            temp.next=prev;
+            prev=temp;
+            temp=next;
+        }
+        ptr.next=prev;
+        p1.next=temp;
+        return dummy.next;
+    }       
+}
+
+/*The Solution class in this Java code provides a method reverseBetween that reverses a portion of a linked list between positions left and right.
+It uses a dummy node to simplify edge cases and make the implementation more straightforward.
+The method iterates through the list until the node preceding the reversal section (left-1).
+It then performs an in-place reversal of the nodes from positions left to right, updating the pointers accordingly.
+After the reversal, it connects the reversed portion back into the original list by updating the next pointers of the preceding and succeeding nodes.
+The modified list is returned.*/
