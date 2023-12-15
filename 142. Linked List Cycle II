@@ -1,0 +1,31 @@
+//Solution for the given problem
+
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow=head;
+        ListNode fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                slow=head;
+                while(slow!=fast){
+                    slow=slow.next;
+                    fast=fast.next;
+                }
+                return slow;
+        }
+        }
+        return null;
+    }
+}
+
+/*The provided Java code defines a Solution class with a detectCycle method to find the starting node of a cycle in a linked list, if one exists.
+The method uses the Floyd's Tortoise and Hare algorithm, which involves two pointers moving at different speeds.
+If there is a cycle, the faster pointer (fast.next.next) will eventually catch up with the slower one (slow), indicating the presence of a loop.
+The method initializes two pointers (slow and fast) at the head of the linked list and iterates through the list. 
+In each iteration, slow moves one step, and fast moves two steps. 
+If there is a cycle, the two pointers will meet at some point.
+Once a cycle is detected, the method resets the slow pointer to the head of the list and moves both slow and fast pointers one step at a time until they meet again.
+The meeting point is the start of the cycle. If there is no cycle, the method returns null.
+This algorithm is efficient and works in O(N) time complexity, where N is the number of nodes in the linked list.*/
