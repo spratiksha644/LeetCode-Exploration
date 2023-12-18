@@ -1,0 +1,31 @@
+//Solution to the given problem
+
+class Solution {
+    public String removeOuterParentheses(String s) {
+        StringBuilder sb=new StringBuilder();
+        Stack<Character> st=new Stack<>();
+        for(int i=0;i<s.length();i++){
+            if(st.isEmpty() && s.charAt(i)=='('){
+                st.push('(');
+            }
+            else if(st.size()>0 && s.charAt(i)=='('){
+                st.push('(');
+                sb.append(s.charAt(i));
+            }
+            else if(st.size()>1 && s.charAt(i)==')'){
+                st.pop();
+                sb.append(s.charAt(i));
+            }
+            else{
+                st.pop();
+            }
+        }
+        return sb.toString();
+    }
+}
+
+/*The Solution class features a removeOuterParentheses method that eliminates the outermost parentheses from a given string s.
+Using a Stack to track parentheses, the algorithm iterates through each character. 
+If an opening parenthesis appears, it is added to the result only if it marks the start of a new primitive decomposition.
+If a closing parenthesis appears, it is added to the result only if it denotes the end of a primitive decomposition.
+The method effectively constructs the desired string without the outermost parentheses, providing a modified result while maintaining the integrity of nested parenthetical structures.*/
