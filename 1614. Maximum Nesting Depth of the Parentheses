@@ -1,0 +1,23 @@
+//Solution for the given problem
+
+class Solution {
+    public int maxDepth(String s) {
+        int count=0;
+        int max=0;
+        Stack<Integer> st=new Stack<>();
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='(')
+                count++;
+            else if(s.charAt(i)==')')
+                count--;
+            max=Math.max(max,count);
+        }
+        return max;
+    }
+}
+
+/*The Solution class contains a maxDepth method that calculates the maximum depth of nested parentheses in a given string s. 
+It utilizes a Stack (st) to keep track of the current nesting level.
+The algorithm iterates through each character in the string, incrementing the count when an opening parenthesis is encountered and decrementing it for a closing parenthesis.
+The max variable is updated at each step to store the maximum nesting depth encountered.
+The final result represents the maximum depth of nested parentheses in the string.*/
