@@ -49,3 +49,32 @@ The getMid method locates the middle node using a slow and fast pointer approach
 The reverse method inverts the linked list in-place.
 The pairSum method checks for special cases, finds the middle, reverses the second half, and iterates through both halves to calculate the maximum pair sum. 
 The code employs an efficient strategy, addressing each aspect of the problem with modularized functions for clarity and effectiveness.*/
+
+//another approach for this problem
+
+class Solution {
+    public int pairSum(ListNode head) {
+        Stack<Integer> st=new Stack<>();
+        ListNode ptr=head;
+        while(ptr!=null){
+            st.push(ptr.val);
+            ptr=ptr.next;
+        }
+        ptr=head;
+        int maxTwin=0;
+        while(st.size()>0){
+            int sum=st.pop();
+            int max=sum+ptr.val;
+            maxTwin=Math.max(max,maxTwin);
+            ptr=ptr.next;
+        }
+        return maxTwin;
+    }
+}
+
+/*The Solution class features a pairSum method that calculates the maximum twin sum of a linked list. 
+It employs a Stack (st) to store the values of each node in the list.
+The algorithm iterates through the linked list, pushing node values onto the stack.
+It then iterates through the list again, popping values from the stack and calculating the sum with the corresponding node value. 
+The maximum twin sum is updated accordingly.
+The method efficiently computes the maximum twin sum by utilizing a stack to maintain node values, resulting in a concise and effective solution.*/
