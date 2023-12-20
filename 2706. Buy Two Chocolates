@@ -1,0 +1,21 @@
+//Solution for the given problem
+
+class Solution {
+    public int buyChoco(int[] prices, int money) {
+        Arrays.sort(prices);
+        int sum=prices[0];
+        sum+=prices[1];
+        if(sum<=money){
+            sum=Math.abs(sum-money);
+            return sum;
+        }
+        return money;
+    }
+}
+
+/*The Solution class features a buyChoco method that takes an array of chocolate prices (prices) and an amount of money (money).
+The method aims to buy two chocolates with the goal of spending as much money as possible without exceeding the available budget.
+The algorithm first sorts the array of chocolate prices in ascending order. It then selects the two lowest-priced chocolates and calculates their total cost (sum).
+If this total cost is less than or equal to the available money, it calculates the remaining money after the purchase (sum = |sum - money|). 
+Otherwise, it returns the original amount of money.
+In summary, the method efficiently determines the optimal way to spend money on two chocolates, ensuring the expenditure does not exceed the budget.*/
