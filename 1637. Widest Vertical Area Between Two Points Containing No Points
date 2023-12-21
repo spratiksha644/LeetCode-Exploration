@@ -1,0 +1,22 @@
+//Solution of the given problem
+
+class Solution {
+    public int maxWidthOfVerticalArea(int[][] points) {
+        int arr[]=new int[points.length];
+        for(int i=0;i<points.length;i++){
+            arr[i]=points[i][0];
+        }
+        Arrays.sort(arr);
+        int max=0;
+        for(int i=1;i<points.length;i++){
+            max=Math.max(arr[i]-arr[i-1],max);
+        }
+        return max;
+    }
+}
+
+/*
+The Solution class defines a method, maxWidthOfVerticalArea, to find the maximum width of a vertical area formed by a set of 2D points.
+It extracts and sorts the x-coordinates of the points, then iterates through the sorted array to calculate the horizontal distances between consecutive x-coordinates. 
+The maximum distance is tracked, and the final result represents the maximum width of the vertical area.
+This algorithm efficiently computes the width by sorting and traversing the x-coordinates, providing an effective solution for determining the spread of points along the vertical axis.*/
