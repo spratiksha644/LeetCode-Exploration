@@ -1,0 +1,24 @@
+//Solution for the given problem
+
+class Solution {
+    public int maxScore(String s) {
+        int onesCount=(int)s.chars().filter(c->c=='1').count();
+        int zerosCount=0,max=0;
+        for(int i=0;i<s.length()-1;i++){
+            if(s.charAt(i)=='1'){
+                onesCount--;
+            }
+            else{
+                zerosCount++;
+            }
+            max=Math.max(max,onesCount+zerosCount);
+        }
+        return max;
+    }
+}
+
+/*The `Solution` class defines a method, `maxScore`, to find the maximum score by splitting a binary string. 
+It counts the occurrences of '1' in the string and initializes the counts of '0' and '1'.
+Then, it iterates through the string, updating counts based on encountered characters, and calculates the score at each position. 
+The maximum score is tracked and returned.
+This algorithm efficiently determines the maximum score by iterating through the string and adjusting counts, providing an effective solution for evaluating different split points in the binary string.*/
