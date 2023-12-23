@@ -1,0 +1,34 @@
+//Solution fpr the given problem
+
+class Solution {
+    public boolean isPathCrossing(String path) {
+        int x=0,y=0;
+        Set<String>points=new HashSet<>();
+        points.add("0,0");
+        for(int i=0;i<path.length();i++){
+            if(path.charAt(i)=='N')
+                y++;
+            else if(path.charAt(i)=='E')
+                x++;
+            else if(path.charAt(i)=='S')
+                y--;
+            else if(path.charAt(i)=='W')
+                x--;
+            String curPoint=x+","+y;
+            if(points.contains(curPoint))
+            {
+                return true;
+            }
+            points.add(curPoint);
+        }
+        return false;
+    }
+}
+
+/*
+The Solution class contains the isPathCrossing method, which determines whether a given path forms a cycle by revisiting a point. 
+It utilizes x and y coordinates, along with a HashSet to store visited points. 
+The method iterates through the path, updating coordinates based on each direction (N, E, S, W).
+It then forms a string representation of the current point and checks if it already exists in the set. 
+If a point is revisited, indicating a cycle, the method returns true; otherwise, it continues updating the set.
+This algorithm efficiently tracks visited points, providing an effective solution for detecting path crossings in a 2D space.*/
