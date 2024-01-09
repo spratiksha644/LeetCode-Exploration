@@ -1,0 +1,30 @@
+//Solution for the given problem
+
+class Solution {
+    public int minSwaps(String s) {
+        int count=0;
+        Stack<Character> st=new Stack<>();
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='['){
+                st.push(s.charAt(i));
+            }
+            else{
+                if(!st.isEmpty() && st.peek()=='['){
+                    st.pop();
+                }
+                else{
+                    st.push(s.charAt(i));
+                }
+            } 
+        }
+        count=st.size()/2;
+        return (count+1)/2;
+    }
+}
+
+/*The Solution class implements the minSwaps method to minimize swaps required to balance brackets in a given string s.
+It uses a stack to track unmatched opening brackets ('[').
+While iterating through the string, it checks if the current character is an opening bracket; if so, it pushes it onto the stack.
+If the character is a closing bracket, and there's a matching opening bracket at the top of the stack, they are both popped.
+If not, the closing bracket is pushed onto the stack. 
+The method calculates the minimum swaps needed to balance brackets, considering both open and close brackets in the stack.*/
