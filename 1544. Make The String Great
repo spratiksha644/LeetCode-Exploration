@@ -1,0 +1,36 @@
+//Solution for the given problem
+
+class Solution {
+    public String makeGood(String s) {
+        if(s.length()==1) return s;
+        Stack<Character>st=new Stack<>();
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<s.length();i++){
+            if(st.isEmpty()){
+                st.push(s.charAt(i));
+            }
+            else{
+                if(!st.isEmpty() && Math.abs(st.peek()-s.charAt(i))==32){
+                st.pop();
+                continue;
+                }
+                st.push(s.charAt(i));
+            }
+        }
+        while(st.size()>0){
+            sb.append(st.pop());
+        }
+        return sb.reverse().toString();
+    }
+}
+
+/*
+The Solution class contains the method makeGood, which aims to remove adjacent pairs of characters that are of the same letter but different cases (e.g., 'a' and 'A') from the given string s.
+The algorithm utilizes a stack to keep track of the characters while traversing the input string. 
+For each character, it checks whether the stack is empty.
+If it is, the character is pushed onto the stack. 
+Otherwise, it compares the current character with the top of the stack to determine if they form a pair with different cases.
+If so, the pair is eliminated by popping the character from the stack.
+If not, the character is pushed onto the stack. 
+Finally, the remaining characters in the stack are concatenated to form the result string.
+The time complexity is O(N), where N is the length of the input string.*/
