@@ -1,0 +1,31 @@
+//Solution for the given problem
+
+class Solution {
+    public int[] maxDepthAfterSplit(String seq) {
+        Stack<Character> st=new Stack<>();
+        int arr[]=new int[seq.length()];
+        for(int i=0;i<seq.length();i++){
+            if(seq.charAt(i)=='(' && st.isEmpty()){
+                st.push(seq.charAt(i));
+                arr[i]=st.size()%2;
+            }
+            if(seq.charAt(i)=='('&& !st.isEmpty()){
+                st.push(seq.charAt(i));
+                arr[i]=st.size()%2;
+            }
+            if(seq.charAt(i)==')' && !st.isEmpty()){
+                arr[i]=st.size()%2;
+                st.pop();
+            }
+        }
+        return arr;
+    }
+}
+
+/*
+The Solution class defines the method maxDepthAfterSplit, which aims to split a given well-formed parentheses sequence seq into two subsequences.
+It utilizes a stack to keep track of the open parentheses encountered during the iteration through the sequence. 
+For each character in the sequence, the algorithm determines the depth of the stack and assigns it to the corresponding index in the result array arr.
+When an open parenthesis '(' is encountered, the algorithm checks whether the stack is empty. If empty, it starts a new subsequence; otherwise, it continues the current subsequence.
+When a closing parenthesis ')' is encountered and the stack is not empty, it updates the result array and pops the corresponding open parenthesis from the stack.
+The final result array represents the split of the parentheses sequence into two subsequences with approximately equal depths.*/
