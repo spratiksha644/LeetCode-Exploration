@@ -1,0 +1,75 @@
+//Implementing Stack Using 1 Queue
+class MyStack {
+    Queue<Integer> q=new LinkedList<Integer>();
+    public MyStack() {
+        
+    }
+    
+    public void push(int x) {
+        q.add(x);
+        for(int i=0;i<q.size()-1;i++){
+            q.add(q.poll());
+        }
+    }
+    
+    public int pop() {
+        return q.poll();
+    }
+    
+    public int top() {
+        return q.peek();
+    }
+    
+    public boolean empty() {
+        return q.size()==0;   
+    }
+}
+
+/*
+This implementation of a stack using one queue involves pushing elements by adding them to the queue and then rotating the queue so that the recently added element becomes the front.
+This ensures that the most recently added element is dequeued first, simulating the behavior of a stack. 
+The pop operation simply dequeues the front element. 
+top returns the front element without dequeuing it.
+Empty checks if the queue is empty. 
+This approach optimizes space complexity, but the time complexity of push is O(n) due to the rotation operation, while other operations are O(1).
+*/
+
+
+//Implementing Stack Using 2 Queue
+class MyStack {
+    Queue<Integer>q1=new LinkedList<Integer>();
+    Queue<Integer>q2=new LinkedList<Integer>();
+    public MyStack() {
+    }
+    
+    public void push(int x) {
+        q2.add(x);
+        while(q1.size()>0){
+            q2.add(q1.poll());
+        }
+        while(q2.size()>0){
+            q1.add(q2.poll());
+        }
+    }
+    
+    public int pop() {
+        return q1.poll();
+    }
+    
+    public int top() {
+        return q1.peek();
+    }
+    
+    public boolean empty() {
+        return q1.size()==0;
+    }
+}
+
+/*
+This stack implementation using two queues involves pushing elements by adding them to one queue (q2) and then transferring all elements from the other queue (q1) to q2.
+This ensures that the newly added element is positioned at the front of q2, simulating the stack behavior.
+The pop operation dequeues from q1, effectively removing the most recently added element.
+top returns the front element without dequeuing it. 
+empty checks if q1 is empty. 
+This approach maintains O(1) time complexity for pop, top, and empty, but push has O(n) time complexity due to the element transfer between queues.
+*/
