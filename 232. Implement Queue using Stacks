@@ -1,0 +1,98 @@
+//Implementing Queue Using 2 Stack
+
+class MyQueue {
+    Stack<Integer> s1=new Stack<Integer>();
+    Stack<Integer> s2=new Stack<Integer>();
+    public MyQueue() {
+        
+    }
+    
+    public void push(int x) {
+        while(!s1.isEmpty()){
+            s2.push(s1.pop());
+        }
+        s2.push(x);
+        while(!s2.isEmpty()){
+            s1.push(s2.pop());
+        }
+    }
+    
+    public int pop() {
+        return s1.pop();
+    }
+    
+    public int peek() {
+        return s1.peek();
+    }
+    
+    public boolean empty() {
+        return s1.size()==0;
+    }
+}
+
+/*
+
+This queue implementation using two stacks ensures FIFO behavior by using stack operations.
+The push operation involves transferring all elements from s1 to s2, adding the new element to s2, then transferring all elements back to s1.
+This arrangement ensures the oldest element is at the bottom of s1, simulating the behavior of a queue. 
+pop dequeues from s1, while peek returns the front element without dequeuing. 
+empty checks if s1 is empty. While pop, peek, and empty maintain O(1) time complexity, push has O(n) due to the element transfer between stacks.
+*/
+
+//optimised approach
+
+class MyQueue {
+    Stack<Integer> s1=new Stack<Integer>();
+    Stack<Integer> s2=new Stack<Integer>();
+    public MyQueue() {
+        
+    }
+    
+    public void push(int x) {
+        s1.push(x);
+    }
+    
+    public int pop() {
+        if(!s2.isEmpty()){
+            return s2.pop();
+        }
+        else{
+            while(!s1.isEmpty()){
+                s2.push(s1.pop());
+            }
+            return s2.pop();
+        }
+    }
+    
+    public int peek() {
+        if(!s2.isEmpty()){
+            return s2.peek();
+        }
+        else{
+            while(!s1.isEmpty()){
+                s2.push(s1.pop());
+            }
+            return s2.peek();
+        }
+    }
+    
+    public boolean empty() {
+         if(!s2.isEmpty()){
+            return s2.size()==0;
+        }
+        else{
+            while(!s1.isEmpty()){
+                s2.push(s1.pop());
+            }
+            return s2.size()==0;
+        }
+    }
+}
+
+/*
+This queue implementation using two stacks ensures FIFO behavior.
+push adds elements to s1. For pop, if s2 has elements, it dequeues from s2; otherwise, it transfers elements from s1 to s2 before dequeuing.
+peek returns the front element without dequeuing, similar to pop.
+empty checks if s2 is empty, and if not, checks its size; otherwise, it transfers elements from s1 to s2 before checking s2's size.
+While pop, peek, and empty maintain O(1) amortized time complexity, push always operates in O(1).
+*/
