@@ -1,0 +1,28 @@
+//Solution for the given problem
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        Queue<Character> q=new LinkedList<>();
+        int l=0;
+        int ans=0;
+        for(int r=0;r<s.length();r++){
+            if(q.contains(s.charAt(r))){
+                while(q.contains(s.charAt(r))){
+                q.poll();
+                l++;
+                }
+            }
+            q.add(s.charAt(r));
+            ans=Math.max(ans,r-l+1);
+        }
+        return ans;
+    }
+}
+
+/*
+This code finds the length of the longest substring without repeating characters using a sliding window approach.
+It iterates through the string, maintaining a queue to track characters in the current window.
+When encountering a repeating character, it adjusts the window's start by dequeuing characters until the repeating character is no longer present.
+It updates the maximum length accordingly.
+By efficiently handling sliding window operations, it ensures that the longest substring's length is accurately computed, optimizing both time and space complexity for the task.
+*/
