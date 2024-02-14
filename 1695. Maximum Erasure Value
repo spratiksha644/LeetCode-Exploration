@@ -1,0 +1,31 @@
+//Solution for the given problem
+
+class Solution {
+    public int maximumUniqueSubarray(int[] nums) {
+        Set<Integer> set= new HashSet<>();
+        int l=0;
+        int ans=0;
+        int k=0;
+        for(int r=0;r<nums.length;r++){
+            while(set.contains(nums[r])){
+                k=k-nums[l];
+                set.remove(nums[l]);
+                l++;;
+            }
+            k=k+nums[r];
+            set.add(nums[r]);
+            ans=Math.max(ans,k);
+            
+        }
+        return ans;
+    }
+}
+
+/*
+This solution iterates through the array, maintaining a sliding window represented by indices l (left) and r (right).
+It uses a HashSet to track unique elements within the window. 
+When encountering a duplicate element, it adjusts the sum k by removing elements from the left side of the window until the duplicate is removed.
+It then adds the current element to the window and updates the maximum sum ans.
+Finally, it returns the maximum sum encountered.
+This approach ensures the maximum sum of unique subarrays without using additional data structures like HashMaps or seen arrays, improving space complexity.
+*/
