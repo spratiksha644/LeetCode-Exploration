@@ -1,0 +1,22 @@
+//Solution for the given problem
+
+class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if(p==null && q==null){
+            return true;
+        }
+        if(p!=null && q!=null && p.val==q.val){
+            return isSameTree(p.left,q.left) && isSameTree(p.right,q.right);
+        }
+        return false;
+    }
+}
+
+/*
+This code recursively compares each corresponding node in trees p and q.
+If both nodes are null, indicating the end of the tree, it returns true.
+If both nodes exist and their values match, it continues the comparison recursively for their left and right subtrees.
+If any node doesn't match or one tree has a node where the other tree doesn't, it returns false. 
+This approach ensures a comprehensive comparison of the structures and values of the two trees.
+If all corresponding nodes match, the function returns true; otherwise, it returns false, indicating a difference between the trees.
+*/
