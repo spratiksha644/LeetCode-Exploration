@@ -1,0 +1,47 @@
+//Solution for the given problem
+
+class Solution {
+     public List<Integer> inorderTraversal(TreeNode root) {
+         List<Integer> list=new ArrayList<Integer>();
+         inorderhelper(root,list);
+         return list;
+     }
+     public void inorderhelper(TreeNode root,List<Integer> list){
+         if(root==null){
+             return;
+         }
+         inorderhelper(root.left,list);
+         list.add(root.val);
+         inorderhelper(root.right,list);
+     }
+ }
+
+/*
+This solution performs an inorder traversal of a binary tree using a helper function.
+It initializes an empty list to store the inorder traversal result.
+The helper function recursively traverses the tree in an inorder manner, appending each node's value to the list.
+It first traverses the left subtree, then adds the current node's value to the list, and finally traverses the right subtree.
+The main function calls the helper function to perform the traversal and returns the list containing the inorder traversal of the binary tree.
+*/
+
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        if (root == null)
+            return list;
+        if (root.left != null)
+            list.addAll(inorderTraversal(root.left));
+        list.add(root.val);
+        if (root.right != null)
+            list.addAll(inorderTraversal(root.right));
+        return list;
+    }
+}
+
+/*
+This solution performs an inorder traversal of a binary tree without using a helper function.
+It initializes an empty list to store the inorder traversal result. It recursively traverses the left subtree, adding its elements to the list.
+Then, it adds the current node's value to the list. 
+Finally, it recursively traverses the right subtree, adding its elements to the list. 
+It returns the list containing the inorder traversal of the binary tree.
+*/
