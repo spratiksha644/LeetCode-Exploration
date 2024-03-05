@@ -1,0 +1,31 @@
+//Solution for the given problem
+
+class Solution {
+    public int minimumLength(String s) {
+        int l=0;
+        int r=s.length()-1;
+        while(l<r){
+            if(s.charAt(l)!=s.charAt(r)){
+                break;
+            }
+            else{
+                while(l<r && s.charAt(l)==s.charAt(l+1)){
+                    l++;
+                }
+                while(l<r && s.charAt(r)==s.charAt(r-1)){
+                    r--;
+                }
+                l++;
+                r--;
+            }
+        }
+        return (r<l)?0:r-l+1;
+    }
+}
+
+/*
+This solution finds the minimum length of a non-empty string by iteratively comparing characters from both ends of the string. 
+It initializes two pointers, l and r, at the start and end of the string, respectively. While l is less than r, it checks if characters at positions l and r are equal.
+If not, it breaks the loop. Inside the loop, it advances l and r inward if adjacent characters are equal, ensuring the minimum length of a non-empty substring with different characters at both ends. 
+Finally, it returns the length of the resulting substring.
+*/
