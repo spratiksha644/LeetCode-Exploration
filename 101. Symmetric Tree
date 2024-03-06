@@ -1,0 +1,64 @@
+//Iterative approach for the given problem
+
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root.left);
+        q.add(root.right);
+        while(!q.isEmpty()){
+            TreeNode left=q.poll();
+            TreeNode right=q.poll();
+            if(left==null && right==null){
+                continue;
+            }
+            if(left==null || right==null){
+                return false;
+            }
+            if(left.val!=right.val){
+                return false;
+            }
+            q.add(left.left);
+            q.add(right.right);
+            q.add(left.right);
+            q.add(right.left);
+        }
+        return true;
+    }
+
+/*This iterative solution checks if a binary tree is symmetric by using a queue to compare mirror images of its nodes.
+It starts with the left and right subtrees of the root.
+Then, it iterates through the queue, dequeuing pairs of nodes to compare.
+If both nodes are null, it continues; if one is null and the other isn't, it returns false. 
+If their values differ, it returns false. 
+Otherwise, it enqueues the left child of the left node, the right child of the right node, the right child of the left node, and the left child of the right node for comparison. 
+If the queue empties without encountering inconsistencies, the tree is symmetric.
+*/
+
+
+//Recursive approach for the given problem
+
+class Solution {
+    public boolean helper(TreeNode p,TreeNode q){
+        if(p==null && q==null){
+            return true;
+        }
+        if(p==null || q==null){
+            return false;
+        }
+        return p.val==q.val && helper(p.left,q.right) && helper(p.right,q.left);
+    }
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null){
+            return true;
+        }
+        return helper(root.left,root.right);
+    }
+}
+
+/*This code defines a helper function to recursively check if a binary tree is symmetric.
+It compares the left subtree of one tree with the right subtree of the other and vice versa.
+If both nodes are null, it returns true, indicating symmetry. 
+If one node is null and the other isn't, or their values don't match, it returns false.
+The main function calls the helper function on the left and right subtrees of the root. 
+If both subtrees are symmetric, the tree is symmetric.
+This approach ensures a thorough comparison of mirror images of the tree nodes, determining if the tree is symmetric.*/
