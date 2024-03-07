@@ -1,0 +1,59 @@
+//Recursive approach for the given problem
+class Solution {
+    public int maxDepth(TreeNode root) {
+        int height=0;
+        if(root==null){
+            return 0;
+        }
+        height++;
+        int a=1+maxDepth(root.left);
+        int b=1+maxDepth(root.right);
+        return Math.max(a,b);
+    }
+}
+
+/*
+This recursive approach calculates the maximum depth of a binary tree.
+If the root is null, indicating an empty tree, it returns 0.
+Otherwise, it starts with a height of 1 and recursively computes the maximum depth of the left and right subtrees. 
+It increments the height by 1 for each level traversed. 
+Finally, it returns the maximum depth among the left and right subtrees plus 1, which represents the height of the current subtree rooted at the given node.
+*/
+
+
+//Iterative approach for the given problem
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+        int height=0;
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            int level=q.size();
+            
+            for(int i=0;i<level;i++){
+                TreeNode curr=q.poll();
+                if(curr.left!=null){
+                    q.add(curr.left);
+                }
+                if(curr.right!=null){
+                    q.add(curr.right);
+                }
+            }
+            height++;
+        }
+        return height;
+    }
+}
+
+/*
+This iterative solution calculates the maximum depth of a binary tree using a level-order traversal.
+It starts with a height of 0 and a queue containing the root node.
+While the queue is not empty, it iterates through each level by processing all nodes in the current level.
+For each node, it dequeues and checks if it has left and right children.
+If it does, it enqueues them for the next level.
+After processing all nodes in the current level, it increments the height. 
+Finally, it returns the calculated height, representing the maximum depth of the tree.
+*/
