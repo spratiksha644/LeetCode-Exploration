@@ -1,0 +1,31 @@
+//Solution for the given problem
+
+class Solution {
+    public TreeNode dfs(int[] nums,int i,int j){
+        if(i>j){
+            return null;
+        }
+        int mid=(i+j)/2;
+        TreeNode root=new TreeNode();
+        root.val=nums[mid];
+        root.left=dfs(nums,i,mid-1);
+        root.right=dfs(nums,mid+1,j);
+        return root;
+    }
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if(nums.length==0){
+            return null;
+        }
+        TreeNode ans=dfs(nums,0,nums.length-1);
+        return ans;
+    }
+}
+
+
+/*
+This Java code converts a sorted array into a balanced binary search tree (BST) using a depth-first search (DFS) approach. 
+The dfs function recursively constructs the BST by dividing the array into halves, with the middle element as the root of the current subtree. 
+Then, it recursively constructs the left and right subtrees using the left and right halves of the array, respectively.
+The sortedArrayToBST function initializes the DFS process by calling the dfs function with the appropriate indices.
+Finally, it returns the root of the resulting balanced BST. If the input array is empty, it returns null.
+*/
