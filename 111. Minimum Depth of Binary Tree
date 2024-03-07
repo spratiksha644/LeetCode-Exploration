@@ -1,0 +1,22 @@
+class Solution {
+    public int minDepth(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+        else if(root.left==null && root.right==null){
+            return 1;
+        }
+        else if(root.left==null){
+            return 1+minDepth(root.right);
+        }
+        else if(root.right==null){
+            return 1+minDepth(root.left);
+        }
+        int left=1+minDepth(root.left);
+        int right=1+minDepth(root.right);
+        return Math.min(left,right);
+    }
+}
+
+ChatGPT
+This Java code calculates the minimum depth of a binary tree using recursion. If the root node is null, it returns 0. If the root node has no left or right child, it returns 1 (indicating the depth of the leaf node). If the root has only one child (either left or right), it recursively calculates the minimum depth of that child subtree. If the root has both left and right children, it calculates the minimum depth of both subtrees and returns the minimum of the two depths plus 1 (to account for the current level).
