@@ -1,0 +1,27 @@
+//Solution for the given problem
+
+class Solution {
+    public void helper(TreeNode root,List<Integer> list){
+        if(root==null) return ;
+        helper(root.left,list);
+        helper(root.right,list);
+        list.add(root.val);
+    }
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> list=new ArrayList<>();
+        if(root==null){
+            return list;
+        }
+        helper(root,list);
+        return list;
+    }
+}
+
+
+/*
+The given Java code defines a solution to perform postorder traversal on a binary tree.
+It defines a helper function helper to perform the traversal recursively.
+This function traverses the left subtree, then the right subtree, and finally adds the current node's value to the list.
+The postorderTraversal function initializes an empty list and then calls the helper function to perform the traversal starting from the root. 
+Finally, it returns the list containing the nodes values in postorder traversal sequence.
+*/
