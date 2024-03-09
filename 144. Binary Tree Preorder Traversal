@@ -1,0 +1,27 @@
+//Solution for the given problem
+
+class Solution {
+    public void helper(TreeNode root, List<Integer> list){
+        if(root==null) return ;
+        list.add(root.val);
+        if(root.left!=null)
+            helper(root.left,list);
+        if(root.right!=null)
+            helper(root.right,list);
+    }
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> list=new ArrayList<>();
+        if(root==null){
+            return list;
+        }
+        helper(root,list);
+        return list;
+    }
+}
+
+
+/*
+The provided Java solution performs a preorder traversal of a binary tree.
+It defines a helper function that traverses the tree recursively in a preorder manner, i.e., it adds the current node's value to the list first, then visits the left subtree, and finally the right subtree. 
+The preorderTraversal function initializes an empty list, calls the helper function to perform the traversal starting from the root, and returns the list containing the node values in preorder traversal sequence.
+*/
