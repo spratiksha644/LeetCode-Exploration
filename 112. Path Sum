@@ -1,0 +1,21 @@
+//Solution to the given problem
+
+class Solution {
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        if(root==null){
+            return false;
+        }
+        if(root.left==null && root.right==null){
+            return root.val==targetSum;
+        }
+        return hasPathSum(root.left,targetSum-root.val)||hasPathSum(root.right,targetSum-root.val);
+        
+    }
+}
+
+/*
+This Java code checks if there exists a root-to-leaf path in a binary tree where the sum of node values along the path equals the given target sum. 
+If the root is null, it returns false. If the current node is a leaf node (has no left or right child), it checks if the root equals the target sum.
+Otherwise, it recursively checks if the target sum can be reached by traversing either the left or right subtree, subtracting the current node's value from the target sum.
+If any path satisfies the condition, it returns true; otherwise, it returns false.
+*/
