@@ -1,0 +1,35 @@
+//Solution for the given problem
+
+
+class Solution {
+    public void dfs(TreeNode root,String path,List<String> paths){
+        if(root.left==null && root.right==null){
+            paths.add(path+root.val);
+            return;
+        }
+        if(root.left!=null){
+            dfs(root.left,path+root.val+"->",paths);
+        }
+        if(root.right!=null){
+            dfs(root.right,path+root.val+"->",paths);
+        }
+    }
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> paths=new ArrayList<>();
+        if(root!=null){
+            dfs(root,"",paths);
+        }
+        return paths;
+    }
+}
+
+
+/*
+The given Java solution aims to find all root-to-leaf paths in a binary tree.
+It employs a depth-first search (DFS) approach to traverse the tree recursively.
+At each node, it appends the current node's value to the path string.
+If the current node is a leaf node, it adds the complete path to the list of paths.
+Otherwise, it continues the DFS traversal recursively for the left and right subtrees.
+Finally, it returns the list of all root-to-leaf paths found in the binary tree. 
+This approach ensures that each path from the root to a leaf node is identified and stored correctly.
+*/
