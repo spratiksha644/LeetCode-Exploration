@@ -1,0 +1,28 @@
+//Solution for the given problem
+
+class Solution {
+    int prev=-1;
+    int min=Integer.MAX_VALUE;
+    public int minDiffInBST(TreeNode root) {
+        if(root==null) return 0;
+        inorder(root);
+        return min;
+    }
+    public void inorder(TreeNode node){
+        if(node==null) return;
+        inorder(node.left);
+        if(prev!=-1){
+            min=Math.min(min,(node.val-prev));
+        }
+        prev=node.val;
+        inorder(node.right);
+    }
+}
+
+
+/*
+This Java solution efficiently finds the minimum absolute difference between any two nodes in a binary search tree (BST).
+It utilizes an inorder traversal approach, ensuring nodes are visited in ascending order.
+By recursively traversing the BST and updating the minimum difference whenever a smaller difference is found.
+The inorder method compares each node's value with the previously visited node's value, continuously updating the minimum difference.
+This algorithm ensures that all possible pairs of adjacent nodes are considered, results in the the smallest difference in the BST.
