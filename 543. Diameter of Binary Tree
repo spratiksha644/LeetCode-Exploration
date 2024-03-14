@@ -1,0 +1,27 @@
+//Solution for the given problem
+
+class Solution {
+    int diameter=0;
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        height(root);
+        return diameter;
+    }
+    public int height(TreeNode root){
+        if(root==null) return 0;
+        int a=height(root.left);
+        int b=height(root.right);
+        diameter=Math.max(a+b,diameter);
+        return Math.max(a,b)+1;
+    }
+}
+
+
+/*
+This Java solution computes the diameter of a binary tree efficiently.
+It recursively calculates the height of each node in the tree, updating the diameter as it traverses. 
+The height function computes the height of each subtree, and the diameter is updated by considering the sum of left and right subtree heights.
+At each node, the maximum diameter is updated.
+The diameterOfBinaryTree function calls the height function and returns the final diameter.
+By traversing the tree once and efficiently updating the diameter, this algorithm accurately computes the diameter of the binary tree.
+*/
