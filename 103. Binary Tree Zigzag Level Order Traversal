@@ -1,0 +1,51 @@
+//Solution for the given problem
+
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result=new ArrayList<>();
+        Deque<TreeNode> q=new LinkedList<>();
+        boolean reverse=false;
+        if(root==null) return result;
+
+        q.add(root);
+        while(!q.isEmpty()){
+            int levelSize=q.size();
+            List<Integer> level=new ArrayList<>();
+            for(int i=0;i<levelSize;i++){
+                if(reverse){
+                    TreeNode curr=q.pollFirst();
+                    level.add(curr.val);
+                    if(curr.right!=null){
+                        q.addLast(curr.right);
+                    }
+                    if(curr.left!=null){
+                        q.addLast(curr.left);
+                    }
+                }
+                else{
+                    TreeNode curr=q.pollLast();
+                    level.add(curr.val);
+                    if(curr.left!=null){
+                        q.addFirst(curr.left);
+                    }
+                    if(curr.right!=null){
+                        q.addFirst(curr.right);
+                    }
+                }
+            }
+            result.add(level);
+            reverse=!reverse;
+        }
+        return result;
+    }
+}
+
+
+/*
+This Java solution computes the zigzag level order traversal of a binary tree. 
+It utilizes a deque (double-ended queue) for level order traversal.
+It alternates between traversing each level from left to right and right to left. 
+At each level, it processes nodes accordingly based on the direction of traversal (left to right or right to left) and adds them to the result list.
+By alternating the direction after processing each level, it achieves the zigzag traversal pattern.
+Finally, it returns the list containing the zigzag level order traversal of the binary tree.
+*/
