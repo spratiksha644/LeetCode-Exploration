@@ -1,0 +1,38 @@
+//Solution for the given problem
+
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> level=new ArrayList<>();
+        Queue<TreeNode> q=new LinkedList<>();
+        if(root==null){
+            return level;
+        }
+        q.add(root);
+        while(!q.isEmpty()){
+            int levelSize=q.size();
+            List<Integer> list=new ArrayList<>();
+            
+            for(int i=0;i<levelSize;i++){
+                TreeNode curr=q.remove();
+                list.add(curr.val);
+                if(curr.left!=null){
+                    q.add(curr.left);
+                }
+                if(curr.right!=null){
+                    q.add(curr.right);
+                }
+            }
+            level.add(list);
+        }
+        return level;
+    }
+}
+
+
+/*
+This Java solution performs a level order traversal of a binary tree, storing the nodes' values in a list of lists, where each inner list represents a level. 
+It uses a queue to process each level iteratively.
+At each level, it dequeues nodes, adds their values to the current level's list, and enqueues their children if they exist.
+After processing all nodes in the current level, it adds the level's list to the result list of lists.
+This approach ensures that nodes at each level are processed before moving to the next level, producing the level order traversal result.
+*/
