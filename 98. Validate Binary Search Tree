@@ -1,0 +1,80 @@
+//Different approach for the gievn problem
+
+//First approach using list
+class Solution {
+    List<Integer> list=new ArrayList<>();
+    public boolean isValidBST(TreeNode root) {
+        inorder(root);
+        for(int i=0;i<list.size()-1;i++){
+            if(list.get(i)>=list.get(i+1)) return false;
+        }
+        return true;
+
+    }
+    public void inorder(TreeNode root){
+        if(root==null) return;
+
+        inorder(root.left);
+        list.add(root.val);
+        inorder(root.right);
+    }
+}
+
+
+/*
+This Java solution determines whether a binary tree is a valid binary search tree (BST) by performing an in-order traversal and storing the node values in a list. 
+After the traversal, it checks whether the values in the list are sorted in ascending order. 
+If any adjacent values are not in ascending order, the tree is not a valid BST, and the function returns false.
+Otherwise, if all values are sorted, it returns true, indicating that the tree is a valid BST.
+*/
+
+
+//Second approach using inorder traversal
+class Solution {
+    TreeNode prev=null;
+    public boolean isValidBST(TreeNode root) {
+        if(root==null) return true;
+
+        boolean left=isValidBST(root.left);
+        if(prev!=null && root.val<=prev.val) return false;
+
+        prev=root;
+
+        boolean right=isValidBST(root.right);
+        return left && right;
+    }
+}
+
+
+/*
+This Java solution checks whether a binary tree is a valid binary search tree (BST) by recursively traversing the tree in an in-order manner.
+It maintains a prev pointer to keep track of the previously visited node during the traversal.
+At each step, it checks whether the current node's value is greater than the value of the previous node.
+If not, it returns false, indicating an invalid BST.
+Otherwise, it updates the prev pointer to the current node and continues the traversal. 
+If both the left and right subtrees are valid BSTs, the function returns true; otherwise, it returns false.
+*/
+
+
+//Third approach using helper function
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+        return isValidBST(root,Long.MIN_VALUE,Long.MAX_VALUE);
+    }
+
+    public boolean isValidBST(TreeNode root,long min,long max){
+        if(root==null) return true;
+        if(root.val>=max || root.val<=min) return false;
+        return isValidBST(root.left,min,root.val) && isValidBST(root.right,root.val,max);
+    }
+}
+
+
+/*
+This Java solution checks whether a binary tree is a valid binary search tree (BST) using a recursive approach with helper function.
+It traverses the tree in a depth-first manner while keeping track of the range of valid values for each node.
+At each step, it checks if the current node's value falls within the valid range defined by its parent nodes. 
+If the current node's value is within the range, it recursively checks its left and right subtrees, updating the range accordingly.
+If any node's value violates the range, the function returns false, indicating an invalid BST. 
+Otherwise, it returns true if all nodes satisfy the BST property.
+*/
