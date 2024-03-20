@@ -1,0 +1,37 @@
+//Solution for the given problem
+
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> list=new ArrayList<>();
+        Queue<TreeNode> q=new LinkedList<>();
+        if(root==null) return list;
+        q.add(root);
+        while(!q.isEmpty()){
+            int level=q.size();
+            for(int i=0;i<level;i++){
+                TreeNode curr=q.poll();
+                if(i==level-1){
+                    list.add(curr.val);
+                }
+                if(curr.left!=null){
+                    q.add(curr.left);
+                }
+                if(curr.right!=null){
+                    q.add(curr.right);
+                }
+            }
+        }
+        return list;
+    }
+}
+
+
+/*
+This Java solution aims to find the right side view of a binary tree. 
+It utilizes a level order traversal (BFS) approach. 
+At each level of the tree, it iterates through the nodes from left to right.
+For each level, it adds the value of the rightmost node to the result list.
+This is achieved by checking if the current node is the last node at its level before adding its value to the list. 
+This process continues until all levels of the tree have been traversed.
+Finally, it returns the list containing the values of the rightmost nodes at each level, which represents the right side view of the binary tree.
+*/
