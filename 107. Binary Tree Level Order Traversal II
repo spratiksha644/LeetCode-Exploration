@@ -1,0 +1,34 @@
+//Solution for the given problem
+
+class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> result=new ArrayList<>();
+        Queue<TreeNode> q=new LinkedList<>();
+        if(root==null) return result;
+        q.add(root);
+        while(!q.isEmpty()){
+            int level=q.size();
+            List<Integer> list=new ArrayList<>();
+            for(int i=0;i<level;i++){
+                TreeNode curr=q.poll();
+                list.add(curr.val);
+                if(curr.left!=null){
+                    q.add(curr.left);
+                }
+                if(curr.right!=null){
+                    q.add(curr.right);
+                }
+            }
+            result.add(0,list);
+        }
+        return result;
+    }
+}
+
+
+/*
+This Java solution computes the level order traversal of a binary tree in a bottom-up manner. 
+It utilizes a queue for level order traversal. At each level, it processes nodes and adds them to the result list. 
+After processing each level, it adds the list of nodes to the beginning of the result list, effectively reversing the order.
+Finally, it returns the result list containing the level order traversal of the binary tree in a bottom-up fashion.
+*/
