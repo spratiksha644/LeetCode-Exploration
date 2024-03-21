@@ -1,0 +1,54 @@
+Solution for the given problem of geeksforgeeks
+
+class Pair<A, B> {
+    A first;
+    B second;
+
+    public Pair(A first, B second) {
+        this.first = first;
+        this.second = second;
+    }
+}
+
+class Solution
+{
+    static ArrayList<Integer> topView(Node root)
+    {
+        // add your code
+        ArrayList<Integer> ans=new ArrayList<>();
+        Map<Integer,Integer> mp=new TreeMap<>();
+        if(root==null) return ans;
+        Queue<Pair<Node,Integer>> q=new LinkedList<>();
+        q.add(new Pair(root,0));
+        while(!q.isEmpty()){
+            Pair<Node,Integer> a=q.remove();
+            int hd=a.second;
+            Node temp=a.first;
+            //check whether the node already exist in map or not 
+            if(mp.get(hd)==null){
+                mp.put(hd,temp.data);
+            }
+            if(temp.left!=null){
+                q.add(new Pair(temp.left,hd-1));
+            }
+            if(temp.right!=null){
+                q.add(new Pair(temp.right,hd+1));
+            }
+        }
+        for(int i:mp.values()){
+            ans.add(i);
+        }
+        return ans;
+    }
+}
+
+
+/*
+This Java solution aims to find the top view of a binary tree. 
+It utilizes a level order traversal (BFS) approach along with a TreeMap to store the horizontal distance (hd) of each node from the root.
+The TreeMap ensures that the nodes are sorted based on their horizontal distance. 
+For each node, if its horizontal distance is encountered for the first time, it is added to the map. 
+This way, only the topmost node at each horizontal distance is stored.
+The final result is obtained by iterating through the values of the TreeMap, which gives the top view nodes from left to right0.
+The solution returns an ArrayList containing the values of the nodes visible from the top view in the binary tree.
+*/
