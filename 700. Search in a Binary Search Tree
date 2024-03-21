@@ -1,0 +1,23 @@
+Solution for the given problem
+
+class Solution {
+    public TreeNode searchBST(TreeNode root, int val) {
+        if(root==null) return root;
+        if(root.val==val){
+            return root;
+        }
+        if(root.val>val){
+            return searchBST(root.left,val);
+        }
+        return searchBST(root.right,val);
+    }
+}
+
+
+/*
+The provided Java code implements a recursive algorithm to search for a value val in a binary search tree (BST). 
+It checks if the root is null or matches val, returning it.
+If val is smaller than the root value, it searches in the left subtree; if larger, in the right subtree. 
+This approach efficiently reduces the search space, navigating the tree recursively until finding the target value or reaching a null node. 
+Upon discovery, it returns the node containing val; otherwise, it returns null, indicating that the value doesn't exist in the BST.
+*/
