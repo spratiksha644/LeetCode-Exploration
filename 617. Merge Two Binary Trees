@@ -1,0 +1,23 @@
+//Solution for the given problem
+
+class Solution {
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+        if(root1==null) return root2;
+        if(root2==null) return root1;
+        if(root1!=null && root2!=null){
+            root1.val=root1.val+root2.val;
+            root1.left=mergeTrees(root1.left,root2.left);
+            root1.right=mergeTrees(root1.right,root2.right);
+        }
+        return root1;
+    }
+}
+
+/*
+This Java solution merges two binary trees, root1 and root2, into one. 
+It recursively combines corresponding nodes, summing their values.
+If one node is null, it returns the other.
+If both nodes are not null, it sums their values, assigns the sum to the corresponding node in root1, and proceeds to merge their left and right subtrees recursively.
+Finally, it returns root1, which now contains the merged tree structure.
+This approach traverses both trees in a depth-first manner, ensuring each node is properly merged with its counterpart.
+*/
