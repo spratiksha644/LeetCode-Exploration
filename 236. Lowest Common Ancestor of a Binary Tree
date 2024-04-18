@@ -1,0 +1,32 @@
+//Solution for the given problem
+
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        //base case
+        if(root==null) return null;
+        if(root.val==p.val||root.val==q.val) return root;
+
+        TreeNode leftAns=lowestCommonAncestor(root.left,p,q);
+        TreeNode rightAns=lowestCommonAncestor(root.right,p,q);
+        if(leftAns==null && rightAns==null){
+            return null;
+        }
+        else if(leftAns==null && rightAns!=null){
+            return rightAns;
+        }
+        else if(leftAns!=null && rightAns==null){
+            return leftAns;
+        }
+        else{
+            return root;
+        }
+    }
+}
+
+/*
+This Java function aims to find the lowest common ancestor (LCA) of two nodes, p and q, in a binary tree with the given root.
+It starts with base cases where if the root is null or if one of the nodes is the root, then the root itself is the LCA. 
+Then, it recursively searches for p and q in the left and right subtrees.
+If both nodes are found in different subtrees, the current root is the LCA.
+If one subtree search returns null and the other returns a non-null node, then the non-null node is the LCA
+*/
