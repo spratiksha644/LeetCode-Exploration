@@ -1,0 +1,67 @@
+class Solution {
+    public void make_parent(TreeNode root,Map<TreeNode,TreeNode> makeparent,TreeNode target){
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            TreeNode curr=q.poll();
+            if(curr.left!=null){
+                makeparent.put(curr.left,curr);
+                q.add(curr.left);
+            }
+            if(curr.right!=null){
+                makeparent.put(curr.right,curr);
+                q.add(curr.right);
+            }
+        }
+    }
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+        if(root==null) return null;
+        Map<TreeNode,TreeNode> makeparent=new HashMap<>();
+        make_parent(root,makeparent,root);
+        Queue<TreeNode> q=new LinkedList<TreeNode>();
+        Map<TreeNode,Boolean> visited=new HashMap<>();
+        q.add(target);
+        visited.put(target,true);
+        int level=0;
+        while(!q.isEmpty()){
+            int size=q.size();
+            if(level==k) break;
+            level++;
+            for(int i=0;i<size;i++){
+            TreeNode cur=q.poll();
+
+            if(cur.left!=null && visited.get(cur.left)==null){
+                q.add(cur.left);
+                visited.put(cur.left,true);
+            }
+            if(cur.right!=null && visited.get(cur.right)==null){
+                q.add(cur.right);
+                visited.put(cur.right,true);
+            }
+            if(makeparent.get(cur)!=null && visited.get(makeparent.get(cur))==null){
+                q.add(makeparent.get(cur));
+                visited.put(makeparent.get(cur),true);
+            }
+            }
+        }
+        List<Integer>list=new ArrayList<Integer>();
+        while(!q.isEmpty()){
+            list.add(q.peek().val);
+            q.poll();
+        }
+        return list;
+    }
+}
+
+/*
+1.make_parent function: It traverses the binary tree using BFS (Breadth-First Search) and creates a mapping between each node and its parent. This mapping is stored in the makeparent map.
+2.distanceK function:
+It initializes a queue q and a map visited to keep track of visited nodes.
+It starts BFS from the target node, adding it to the queue and marking it as visited.
+Within each level of BFS traversal, it explores the neighbors of each node (left child, right child, and parent) and adds them to the queue if they haven't been visited yet.
+It repeats this process until the queue is empty or until the desired level 'k' is reached.
+After the BFS traversal, it extracts the values of the nodes in the queue and adds them to the result list list.
+This approach ensures that all nodes at a distance 'k' from the target node are visited efficiently using BFS.
+The mapping of parent nodes allows traversal to the parent node as well, ensuring all adjacent nodes are explored. 
+Finally, the result list contains the values of nodes at distance 'k' from the target.
+*/
