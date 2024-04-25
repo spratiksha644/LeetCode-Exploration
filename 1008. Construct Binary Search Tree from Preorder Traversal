@@ -1,0 +1,25 @@
+class Solution {
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return helper(preorder,Integer.MAX_VALUE,new int[]{0});
+    }
+    public TreeNode helper(int[] preorder,int bound,int[]i){
+        if(i[0]==preorder.length || preorder[i[0]]>bound) return null;
+        TreeNode root=new TreeNode(preorder[i[0]++]);
+        root.left=helper(preorder,root.val,i);
+        root.right=helper(preorder,bound,i);
+        return root;
+    }
+}
+
+
+/*
+This code generates a Binary Search Tree (BST) from a given preorder traversal array.
+It iterates over the preorder array and constructs the tree recursively using a helper function. 
+Initially, it sets the maximum bound to Integer.MAX_VALUE and starts from index 0 of the array.
+The helper function creates a new TreeNode for the current element and recursively constructs its left and right subtrees. 
+It updates the bound for the right subtree to ensure the correct ordering in the BST.
+By incrementing the index i appropriately, it processes each element of the array.
+Finally, the constructed BST's root is returned.
+This approach leverages the preorder traversal property, where the first element always represents the root, and recursively constructs the tree based on the BST rules, 
+ensuring that left children are less than their parent, and right children are greater.
+*/
