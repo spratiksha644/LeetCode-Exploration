@@ -1,0 +1,27 @@
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        ArrayList<Integer> list = new ArrayList<>();
+        inOrder(root,list);
+        return list.get(k-1);
+    }
+    public void inOrder(TreeNode root,ArrayList<Integer> list){
+        if(root==null){
+            return;
+        }
+        inOrder(root.left,list);
+        list.add(root.val);
+        inOrder(root.right,list);
+    }    
+}
+
+
+/*
+Explaination:
+1.Initialization: Create an empty ArrayList to store the elements in sorted order.
+2.In-order Traversal: Perform an in-order traversal of the BST, visiting nodes in ascending order.
+Recursively traverse the left subtree.
+Add the current node's value to the ArrayList.
+Recursively traverse the right subtree.
+3.Return Kth Smallest: Return the (k-1)th element from the ArrayList, as ArrayList indexing starts from 0.
+This approach ensures that the elements are visited in sorted order due to the nature of in-order traversal, and the kth smallest element can be easily accessed from the ArrayList.
+*/
