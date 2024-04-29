@@ -1,0 +1,31 @@
+class Solution {
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        Map<Integer,Integer> mp = new HashMap<>();
+        for(int i=0;i<inorder.length;i++){
+            mp.put(inorder[i],i);
+        }
+        TreeNode root=helper(inorder,0,inorder.length-1,postorder,0,postorder.length-1,mp);
+        return root;
+    }
+    public TreeNode helper(int[] inorder,int instart,int inend,int[] postorder,int poststart,int postend,Map<Integer,Integer> mp){
+        if(instart > inend || poststart > postend) return null;
+        TreeNode root = new TreeNode(postorder[postend]);
+        int inroot=mp.get(root.val);
+        int nums=inroot-instart;
+        root.left=helper(inorder,instart,inroot-1,postorder,poststart,poststart+nums-1,mp);
+        root.right=helper(inorder,instart+nums+1,inend,postorder,poststart+nums,postend-1,mp);
+        return root;
+    }
+
+
+/*
+This buildTree function constructs a binary tree using inorder and postorder traversal arrays:
+It initializes a HashMap (mp) to store the indices of elements in the inorder array for efficient retrieval.
+Then, it calls the helper function to recursively build the tree.
+In the helper function:
+It creates a TreeNode with the value of the last element in the postorder array.
+It finds the index of the root value in the inorder array (inroot).
+It calculates the number of nodes in the left subtree based on the root index (nums).
+Recursively constructs left and right subtrees with appropriate indices.
+Finally, it returns the root of the constructed tree.
+*/
